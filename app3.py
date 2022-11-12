@@ -6,7 +6,6 @@ import tensorflow.keras.backend as K
 from tensorflow.keras.layers import Dense, Dropout, LSTM, BatchNormalization, Input, Conv2D, MaxPool2D, Lambda, Bidirectional
 from tensorflow.keras.models import Model
 from tensorflow.keras import regularizers
-import pyperclip
 char_list = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\
 			 ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠạẢảẤấẦầẨẩẪẫẬậẮắẰằẲẳẴẵẶặ\
 			 ẸẹẺẻẼẽẾếỀềỂểỄễỆệỈỉỊịỌọỎỏỐốỒồỔổỖỗỘộỚớỜờỞởỠỡỢợỤụỦủỨứỪừỬửỮữỰựỲỳỴỵỶỷỸỹ "
@@ -158,5 +157,3 @@ if uploaded_file is not None:
         roi = roi/255
         pred_str += predict(roi) + ' '
     st.write("Predicted string: ", pred_str)
-    if st.button("Copy to clipboard", key='copy'):
-        pyperclip.copy(pred_str)
