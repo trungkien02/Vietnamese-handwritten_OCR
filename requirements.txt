@@ -2,3 +2,4 @@ opencv-python-headless
 streamlit
 tensorflow
 numpy
+pyperclip
