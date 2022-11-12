@@ -1,13 +1,6 @@
 import streamlit as st
 import cv2
 import numpy as np
-import tensorflow.keras.backend as K
-
-from tensorflow.keras.models import Model
-
-import cv2
-import numpy as np
-# import fastwer
 import tensorflow as tf
 import tensorflow.keras.backend as K
 from tensorflow.keras.layers import Dense, Dropout, LSTM, BatchNormalization, Input, Conv2D, MaxPool2D, Lambda, Bidirectional
@@ -22,7 +15,6 @@ threshold = [32, 128]
 max_label_len = np.load('Data/npy-data/max_label_len.npy')
 
 def encode_to_labels(txt):
-    # encoding each output word into digits
     dig_lst = []
     for index, char in enumerate(txt):
         try:
