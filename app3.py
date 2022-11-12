@@ -134,6 +134,14 @@ def predict(img):
             if int(p) != -1:
                 predicted_str += char_list[int(p)]    
     return predicted_str
+
+def sort_contours(cnts, reverse = False):
+    i = 0
+    boundingBoxes = [cv2.boundingRect(c) for c in cnts]
+    (cnts, boundingBoxes) = zip(*sorted(zip(cnts, boundingBoxes),
+    key=lambda b:b[1][i], reverse=reverse))
+    return cnts
+
 st.title("OCR")
 st.write("This is a simple OCR app")
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
@@ -146,6 +154,7 @@ if uploaded_file is not None:
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (9,9))
     dilate = cv2.dilate(thresh, kernel, iterations=4)
     contours, hierarchy = cv2.findContours(dilate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours = sort_contours(contours, reverse=False)
     pred_str = ''
     for cnt in contours:       
         x, y, w, h = cv2.boundingRect(cnt)
